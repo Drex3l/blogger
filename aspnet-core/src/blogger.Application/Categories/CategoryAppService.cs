@@ -10,11 +10,11 @@ using Microsoft.EntityFrameworkCore;
 namespace blogger.Blogs
 {
     [AbpAuthorize]
-    public class CategoryAppServices : bloggerAppServiceBase, ICategoryAppService
+    public class CategoryAppService : bloggerAppServiceBase, ICategoryAppService
     {
         private readonly ICategoryManager _categoryManager;
         private readonly IRepository<Category, int> _categoryRepository;
-        public CategoryAppServices(
+        public CategoryAppService(
             ICategoryManager categoryManager,
             IRepository<Category, int> categoryRepository)
         {

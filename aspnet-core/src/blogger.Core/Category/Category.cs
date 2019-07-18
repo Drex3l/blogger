@@ -15,7 +15,7 @@ namespace blogger.Blogs
         [Required]
         [StringLength(MaxTitleLength)]
         // [Index(IsUnique = true)]
-        public virtual string Title { get; protected set; }
+        public virtual string Title { get; set; }
 
         [ForeignKey("CategoryId")]
         public virtual ICollection<Blog> Blogs { get; protected set; }
@@ -25,7 +25,7 @@ namespace blogger.Blogs
         /// But constructor can not be private since it's used by EntityFramework.
         /// Thats why we did it protected.
         /// </summary>
-        protected Category()
+        public Category()
         {
             
         }
