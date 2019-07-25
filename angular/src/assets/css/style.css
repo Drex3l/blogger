@@ -1,0 +1,26 @@
+.entity-description {
+    overflow: hidden;
+    font-size: 14px !important;
+    margin-top: 15px !important;
+    line-height: 18px !important;
+}
+
+.entity-detail-header {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #999;
+    line-height: 15px;
+}
+
+.card .header .header-dropdown .custom .btn{
+    border-radius: 0%;
+    color: #999;
+    transition: 0s;
+}
+.card .header .header-dropdown .custom .btn:hover{color: #fff}
+.card .header .header-dropdown .custom .btn:hover .fa-arrow-circle-left{color: #fff}
+.card .header .header-dropdown .custom .btn:hover .fa-edit{color: #09f}
+.card .header .header-dropdown .custom .btn:hover .fa-remove{color: #f70}
+.card .header .header-dropdown .custom .btn:hover .fa-check{color: #0f0}
+
+.content-inactive{opacity: .6;}

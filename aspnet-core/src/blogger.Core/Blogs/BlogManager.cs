@@ -7,7 +7,7 @@ using blogger.Authors;
 
 namespace blogger.Blogs
 {
-    public class BlogManager
+    public class BlogManager : IBlogManager
     {
         public IEventBus EventBus { get; set; }
         private readonly IRepository<Blog, Guid> _blogRepository;

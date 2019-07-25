@@ -38,5 +38,8 @@ namespace blogger.Blogs
             @category.Blogs = new Collection<Blog>();
             return @category;
         }
+        // public Category Delete(){
+        //     return this;
+        // }
     }
 }

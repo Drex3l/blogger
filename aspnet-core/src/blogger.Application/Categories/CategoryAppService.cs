@@ -7,6 +7,7 @@ using Abp.Application.Services.Dto;
 using blogger.Blogs.Dtos;
 using Abp.AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Abp.UI;
 namespace blogger.Blogs
 {
     [AbpAuthorize]
@@ -36,8 +37,14 @@ namespace blogger.Blogs
         }
         public async Task DeleteAsync(EntityDto<int> input)
         {
-            await _categoryManager.DeleteAsync(
-                await _categoryManager.GetAsync(input.Id));
+            var cat = await _categoryRepository.FirstOrDefaultAsync(input.Id);
+            if(cat == null){
+                throw new UserFriendlyException("Category Not Found");
+            }else
+            {
+                    await _categoryManager.DeleteAsync(cat);
+            }
+        
         }
     }
 }

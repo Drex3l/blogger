@@ -88,7 +88,7 @@ export class CreateUserDialogComponent extends AppComponentBase
         })
       )
       .subscribe(() => {
-        this.notify.info(this.l('SavedSuccessfully'));
+        this.notify.info(this.l('Saved Successfully'));
         this.close(true);
       });
   }

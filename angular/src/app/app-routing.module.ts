@@ -1,3 +1,5 @@
+import { CategoriesComponent } from './categories/categories.component';
+import { BlogsComponent } from './blogs/blogs.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -8,6 +10,8 @@ import { UsersComponent } from './users/users.component';
 import { TenantsComponent } from './tenants/tenants.component';
 import { RolesComponent } from 'app/roles/roles.component';
 import { ChangePasswordComponent } from './users/change-password/change-password.component';
+import { AuthorsComponent } from './authors/authors.component';
+import { AthorDetailComponent } from './authors/author-detail/author-detail.component';
 
 @NgModule({
     imports: [
@@ -21,7 +25,11 @@ import { ChangePasswordComponent } from './users/change-password/change-password
                     { path: 'roles', component: RolesComponent, data: { permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },
                     { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
                     { path: 'about', component: AboutComponent },
-                    { path: 'update-password', component: ChangePasswordComponent }
+                    { path: 'update-password', component: ChangePasswordComponent },
+                    { path: 'blogs', component:BlogsComponent },
+                    { path: 'categories', component:CategoriesComponent },
+                    { path: 'authors', component:AuthorsComponent },
+                    { path: 'authors/:authorId', component: AthorDetailComponent }
                 ]
             }
         ])

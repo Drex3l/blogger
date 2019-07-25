@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Abp.Domain.Entities;
+using Abp.UI;
 using blogger.Blogs;
 namespace blogger.Authors
 {
@@ -17,16 +18,18 @@ namespace blogger.Authors
 
         [Required]
         [StringLength(MaxNameLength)]
-        public virtual string FirstName { protected set; get;}
+        public virtual string FirstName {  set; get;}
 
         [Required]
         [StringLength(MaxNameLength)]
-        public virtual string LastName { protected set; get;}
+        public virtual string LastName {  set; get;}
 
         [StringLength(MaxEmailLength)]
-        public virtual string Email { protected set; get;}
+        public virtual string Email {  set; get;}
 
-        public virtual bool IsDeactivated { get; protected set; }
+        public virtual bool IsDeactivated { get;  set; }
+
+        public virtual int BlogCount { get; set; }
 
         [ForeignKey("AuthorId")]
         public virtual ICollection<Blog> Blogs { get; protected set; }
@@ -37,7 +40,7 @@ namespace blogger.Authors
         /// </summary>
         protected Author()
         {
-
+            
         }
         public static Author Create(int tenantId, string fname, string lname, string mail){
             var @author = new Author{
@@ -47,11 +50,22 @@ namespace blogger.Authors
                 Email = mail
             };
             @author.Blogs = new Collection<Blog>();
+            @author.BlogCount = @author.Blogs.Count;
             return @author;
         }
-        internal void Deactivate()
+        public static Author Update(long id, int tenantId, string fname, string lname, string mail){
+            var @author = new Author{
+                Id = id,
+                TenantId = tenantId,
+                FirstName = fname,
+                LastName = lname,
+                Email = mail
+            };
+            return @author;
+        }
+        internal void Deactivate(bool action)
         {
-            IsDeactivated = true;
+            IsDeactivated = action;
         }
     }
 }

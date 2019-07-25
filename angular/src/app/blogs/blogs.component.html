@@ -1,0 +1,52 @@
+<div class="row clearfix" [@routerTransition]>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+      <div class="block-header row">
+          <div class="col-md-6">
+              <h2>
+                  {{l('Blogs')}}
+                  (<input type="checkbox" id="includeCanceledEvents" [(ngModel)]="includeCanceledBlogs" (change)="includeCanceledBlogsCheckboxChanged()">
+                  <label for="includeCanceledBlogs">{{l("ShowCanceledBlogs")}}</label>)
+              </h2>
+          </div>
+          <div class="col-md-6 text-right">
+              <button type="button" data-toggle="modal" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" (click)="createBlog()">
+                  <i class="material-icons">add</i>
+              </button>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-6" *ngFor="let blog of blogs">
+              <div class="card">
+                  <div [class]="blog.isCancelled ? 'header bg-red' : 'header'">
+                      <h2>
+                          {{blog.title}} <small class="event-description">{{blog.content}}</small>
+                      </h2>
+                      <ul class="header-dropdown m-r-0">
+                          <li>
+                              <i class="fa fa-calendar"></i>
+                          </li>
+                          <li>
+                              <span>{{blog.date | date:'short'}}</span>
+                          </li>
+                      </ul>
+                      <hr />
+                      <div class="row">
+                          <div class="col-md-6">
+                          </div>
+                          <div class="col-md-6 text-right">
+                              <button type="button" class="btn bg-deep-purple waves-effect btn-sm"
+                                      [routerLink]="['/app/blog', blog.id]">
+                                  <span>{{l("Details")}}</span>
+                                  <i class="fa fa-arrow-circle-right"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<create-blog-modal #createBlogModal (modalSave)="refresh()"></create-blog-modal>

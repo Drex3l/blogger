@@ -9,7 +9,9 @@ namespace blogger.Authors
     public interface IAuthorAppService : IApplicationService
     {
         Task<ListResultDto<AuthorListDto>> GetListAsync(GetAuthorListInput input);
-        Task CreateAsync(CreateAuthorInput input);
+        Task CreateAsync(DtoAuthorInput input);
+        Task UpdateAsync(DtoAuthorInput input);
         Task DeativateAsync(EntityDto<long> input);
+        Task<AuthorDetailOutput> GetDetailAsync(EntityDto<long> input);
     }
 }

@@ -7,6 +7,6 @@ namespace blogger.Authors
     {
         Task<Author> GetAsync(long id);
         Task CreateAsync(Author @author);
-        void Deactivate(Author @author);
+        Task UpdateAsync(Author @author);
     }
 }

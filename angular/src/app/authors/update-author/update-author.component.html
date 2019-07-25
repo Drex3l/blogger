@@ -1,0 +1,48 @@
+<div bsModal #updateAuthorModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" role="dialog"
+    aria-labelledby="updateUserModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div #modalContent class="modal-content">
+            <form *ngIf="active" #updateAuthorForm="ngForm" id="frm_update_author" novalidate (ngSubmit)="save()">
+                <div class="modal-header">
+                    <div class="modal-header">
+                        <button type="button" class="close" (click)="close()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">
+                            <span>{{l("Update Author Details")}}</span>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group form-float">
+                            <div class='form-line' [ngClass]="author.firstName !== null? 'focused':''">
+                                <input class="form-control txt-input" type="text" name="FirstName" [(ngModel)]="author.firstName"
+                                    required maxlength="64" minlength="2" value="{{ author.firstName }}">
+                                <label class="form-label">{{l("First Name")}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="author.lastName !== null? 'focused':''">
+                                <input class="form-control txt-input" type="text" name="LastName" [(ngModel)]="author.lastName"
+                                    required maxlength="64" minlength="2"  value="{{ author.lastName }}" >
+                                <label class="form-label">{{l("Last Name")}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line" [ngClass]="author.email !== null? 'focused':''">
+                                <input class="form-control txt-input" type="email" name="Email" [(ngModel)]="author.email"
+                                    required maxlength="64" minlength="2"  value="{{ author.email }}" >
+                                <label class="form-label">{{l("Email")}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button [disabled]="saving" type="button" class="btn btn-default"
+                            (click)="close()">{{l("Cancel")}}</button>
+                        <button [disabled]="!updateAuthorForm.form.valid || saving" type="submit"
+                            class="btn btn-primary blue">{{l("Save")}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

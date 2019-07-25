@@ -9,13 +9,13 @@ using blogger.Authors;
 
 namespace blogger.Blogs
 {
-    public class CategoryManager
+    public class CategoryManager : ICategoryManager
     {
         public IEventBus EventBus { get; set; }
         private readonly IRepository<Category,int> _blogCategoryRepository;
 
         public CategoryManager(
-            IRepository<Category> blogCategoryRepository
+            IRepository<Category,int> blogCategoryRepository
         )
         {
             _blogCategoryRepository = blogCategoryRepository;
@@ -35,6 +35,10 @@ namespace blogger.Blogs
         public async Task CreateAsync(Category @category)
         {
             await _blogCategoryRepository.InsertAsync(@category);
+        }
+        public async Task DeleteAsync(Category @category)
+        {
+             await _blogCategoryRepository.DeleteAsync(@category);
         }
     }
 }
